@@ -16,7 +16,7 @@ int main() {
   std::unordered_map<Type, Type> umap;
   std::vector<std::pair<Type, Type>> vec;
 
-  const Type N = 100;
+  const Type N = 100000;
   for (Type i = 0; i < N; ++i) {
     omap[i] = 5;
     umap[i] = 5;
@@ -37,13 +37,19 @@ int main() {
     }
   });
 
+  auto f = [](const auto& v, auto i) {
+    for (const auto& p : v) {
+      if (p.first == i) {
+        break;
+      }
+    }
+    return i;
+  };
+
   nanobench::Bench().run("find-in-vec", [&] {
     // for (Type i = 0; i < N; ++i) {
     for (const auto& p : vec) {
-      nanobench::doNotOptimizeAway(
-        std::find_if(vec.begin(), vec.end(), [i = p.first](const auto& p) {
-          return p.first == i;
-        }) != vec.end());
+      nanobench::doNotOptimizeAway(f(vec, p.first));
     }
   });
 
