@@ -1,4 +1,4 @@
-// Copyright 202f -- CONTRIBUTORS. See LICENSE.
+// Copyright 2024 -- CONTRIBUTORS. See LICENSE.
 
 #include "lib/type_macros.hpp"
 

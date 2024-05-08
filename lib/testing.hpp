@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include <iostream>
 #include <sstream>
 #include <vector>
 
@@ -14,7 +15,7 @@
 namespace lib {
 
 // See: external/catch2/examples/210-Evt-EventListeners.cpp
-class SummaryReporter : public Catch::EventListenerBase {
+class SummaryReporter final : public Catch::EventListenerBase {
  public:
   using EventListenerBase::EventListenerBase;
 
@@ -31,5 +32,7 @@ class SummaryReporter : public Catch::EventListenerBase {
   std::size_t depth_ = 0;
   std::vector<std::stringstream> report_;
 };
+
+CATCH_REGISTER_LISTENER(SummaryReporter)
 
 }  // namespace lib

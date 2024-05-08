@@ -8,7 +8,6 @@ cc_library(
   name = "testing",
   hdrs= ["testing.hpp"],
   srcs= ["testing.cpp"],
-  defines = ["CATCH_CONFIG_MAIN"],
   deps = [
     "@catch2//:catch2_main",
   ],

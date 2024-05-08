@@ -61,6 +61,4 @@ void SummaryReporter::sectionEnded(Catch::SectionStats const& stats) {
 void SummaryReporter::assertionStarting(Catch::AssertionInfo const& info) {}
 void SummaryReporter::assertionEnded(Catch::AssertionStats const& stats) {}
 
-CATCH_REGISTER_LISTENER(SummaryReporter)
-
 }  // namespace lib
