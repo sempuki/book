@@ -1,0 +1,2 @@
+build:dbg --copt=-g
+build:opt --copt=-O3
