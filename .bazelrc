@@ -1,2 +1,4 @@
+build --copt="--std=c++20"
+build --copt="-Wall"
 build:dbg --copt=-g
 build:opt --copt=-O3
