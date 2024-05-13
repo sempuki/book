@@ -1,4 +1,4 @@
-// Copyright 2022 -- CONTRIBUTORS. See LICENSE.
+// Copyright 2024 -- CONTRIBUTORS. See LICENSE.
 
 #pragma once
 
