@@ -63,11 +63,21 @@ std::vector<int> sample_index_generate(int sample_count, int index_count) {
 
 void cache_clobber(std::size_t cache_size) {
   volatile int no_optimize;
-  std::vector<std::size_t> m(cache_size / sizeof(std::size_t));
-  std::fill(m.begin(), m.end(), 1);
-  no_optimize = m.front();
-  no_optimize = m.back();
   (void)no_optimize;
+  std::vector<std::size_t> m(cache_size / sizeof(std::size_t), 1);
+  no_optimize = m.back();
+}
+
+auto memory_fragment(std::size_t chunk_count, std::size_t chunk_size) {
+  volatile int no_optimize;
+  (void)no_optimize;
+  auto result =                             //
+    std::vector<std::vector<std::size_t>>(  //
+      chunk_count / sizeof(std::size_t),    //
+      std::vector<std::size_t>(             //
+        chunk_size / sizeof(std::size_t)));
+  no_optimize = result.back().back();
+  return result;
 }
 
 }  // namespace ch1
