@@ -1,3 +1,4 @@
+#include <any>
 #include <iostream>
 #include <map>
 #include <unordered_map>
@@ -15,6 +16,7 @@ struct Value final {
 int main() {
   volatile int no_optimize;
   (void)no_optimize;
+  std::vector<std::any> fragments;
 
   using namespace lib;
   using namespace ch1;
@@ -34,11 +36,11 @@ int main() {
   FlatMap<K, V> fmap;
 
   for (std::size_t n = 0; n < N; ++n) {
-    auto fr1 = memory_fragment(I, J);
+    fragments.push_back(memory_fragment(I, J));
     omap[n] = {};
-    auto fr2 = memory_fragment(I, J);
+    fragments.push_back(memory_fragment(I, J));
     umap[n] = {};
-    auto fr3 = memory_fragment(I, J);
+    fragments.push_back(memory_fragment(I, J));
     fmap[n] = {};
   }
 

@@ -68,7 +68,7 @@ void cache_clobber(std::size_t cache_size) {
   no_optimize = m.back();
 }
 
-auto memory_fragment(std::size_t chunk_count, std::size_t chunk_size) {
+std::any memory_fragment(std::size_t chunk_count, std::size_t chunk_size) {
   volatile int no_optimize;
   (void)no_optimize;
   auto result =                             //
