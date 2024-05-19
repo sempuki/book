@@ -2,6 +2,7 @@
 #pragma once
 
 #include <algorithm>
+#include <any>
 #include <cstdint>
 #include <memory>
 #include <random>
@@ -62,14 +63,14 @@ std::vector<int> sample_index_generate(int sample_count, int index_count) {
 }
 
 void cache_clobber(std::size_t cache_size) {
-  volatile int no_optimize;
+  volatile int no_optimize = 0;
   (void)no_optimize;
   std::vector<std::size_t> m(cache_size / sizeof(std::size_t), 1);
   no_optimize = m.back();
 }
 
 std::any memory_fragment(std::size_t chunk_count, std::size_t chunk_size) {
-  volatile int no_optimize;
+  volatile int no_optimize = 0;
   (void)no_optimize;
   auto result =                             //
     std::vector<std::vector<std::size_t>>(  //

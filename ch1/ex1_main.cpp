@@ -1,4 +1,3 @@
-#include <any>
 #include <iostream>
 #include <map>
 #include <unordered_map>
@@ -14,7 +13,7 @@ struct Value final {
 };
 
 int main() {
-  volatile int no_optimize;
+  volatile int no_optimize = 0;
   (void)no_optimize;
   std::vector<std::any> fragments;
 
@@ -22,11 +21,11 @@ int main() {
   using namespace ch1;
 
   constexpr std::size_t N = 1000;
-  constexpr std::size_t M = 32 * 1024 * 1024;
+  constexpr std::size_t M = 64 * 1024 * 1024;
   constexpr std::size_t S = 100;
-  constexpr std::size_t X = 100;
+  constexpr std::size_t X = 10;
   constexpr std::size_t I = 1000;
-  constexpr std::size_t J = 1000;
+  constexpr std::size_t J = 100;
 
   using K = std::int32_t;
   using V = Value;
@@ -44,14 +43,14 @@ int main() {
     fmap[n] = {};
   }
 
+  std::vector<int> samples = sample_index_generate(S, N);
+
   std::chrono::nanoseconds omap_time{};
   std::chrono::nanoseconds umap_time{};
   std::chrono::nanoseconds fmap_time{};
 
-  std::vector<int> samples = sample_index_generate(S, N);
-
-  for (int x = 0; x < X; ++x) {
-    for (int count = 0; count < S; ++count) {
+  for (std::size_t x = 0; x < X; ++x) {
+    for (std::size_t count = 0; count < S; ++count) {
       cache_clobber(M);
       {
         auto t0 = time_point_now();
